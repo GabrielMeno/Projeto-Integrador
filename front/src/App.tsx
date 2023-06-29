@@ -1,14 +1,13 @@
-import './global.css';
+import { BrowserRouter } from "react-router-dom";
+import "./global.css";
+import { RouteApp } from "./routes";
 
 function App() {
-
   return (
-    <>
-      <div>
-        <h1> HELLO WOLRD </h1>
-      </div>
-    </>
-  )
+    <BrowserRouter>
+      <RouteApp /> ;
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

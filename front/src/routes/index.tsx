@@ -1,8 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 export const RouteApp = () => {
   return (
-    <BrowserRouter>
       <Routes>
         <Route
           path="/"
@@ -13,6 +12,5 @@ export const RouteApp = () => {
           }
         />
       </Routes>
-    </BrowserRouter>
   );
 };
