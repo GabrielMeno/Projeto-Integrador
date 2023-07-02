@@ -5,7 +5,7 @@ import { RouteApp } from "./routes";
 function App() {
   return (
     <BrowserRouter>
-      <RouteApp /> ;
+      <RouteApp /> 
     </BrowserRouter>
   );
 }
