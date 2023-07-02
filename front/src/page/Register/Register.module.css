@@ -1,0 +1,8 @@
+.background{
+  background-image: url('../../assets/cadastro.webp.webp');
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
