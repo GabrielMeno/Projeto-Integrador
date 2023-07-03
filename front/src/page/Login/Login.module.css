@@ -39,3 +39,18 @@
   font-weight: 300;
   margin-bottom: 2rem;
 }
+
+.register span{
+  color: var(--white);
+  font-size: .8rem;
+  font-weight: 300;
+}
+
+.register{
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.register a{
+  color: var(--white);
+}

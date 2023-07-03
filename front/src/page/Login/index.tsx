@@ -4,6 +4,8 @@ import { Input } from "../../components/Input/Index";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "../../components/Button";
+import { Link } from "react-router-dom";
 
 interface IFormValues {
   email: string;
@@ -18,7 +20,11 @@ export function Login() {
       .required("Campo de email obrigadotório"),
     password: yup.string().required("Campo de senha obrigatório"),
   });
-  const { register, handleSubmit, formState: {errors} } = useForm<IFormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormValues>({
     resolver: yupResolver(schema),
   });
   const submit = handleSubmit((data) => {
@@ -38,15 +44,20 @@ export function Login() {
                 type="text"
                 placeholder="Email"
                 {...register("email", { required: true })}
-                error={errors.email && errors.email.message }
+                error={errors.email && errors.email.message}
               />
               <Input
                 placeholder="Senha"
                 type="password"
                 {...register("password", { required: true })}
               />
-              <button>Entrar</button>
+              <Button text="Entrar" />
             </form>
+            <div className={style.register}>
+              <span>
+                Ainda não tem conta? <Link to={"/register"}>Cadastre-se</Link>
+              </span>
+            </div>
           </div>
         </div>
       </div>
