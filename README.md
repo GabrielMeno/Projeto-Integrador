@@ -48,5 +48,4 @@ Este projeto foi desenvolvido pelo aluno Gabriel Henrique Menoncin como parte do
 
 ## Contato
 
-Para mais informações sobre este projeto, entre em contato com 
-<a href = "mailto:gabrielmenoncin38@gmail.com">
+Para mais informações sobre este projeto, entre em contato pelo email: gabrielmenoncin38@gmail.com
