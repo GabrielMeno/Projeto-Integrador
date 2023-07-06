@@ -40,7 +40,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 
 ## Documentação
 
-A documentação completa deste projeto, incluindo a especificação dos requisitos, o modelo de banco de dados e o diagrama de classes, pode ser encontrada na pasta [Requesitos-e-Modelos].
+A documentação completa deste projeto, incluindo a especificação dos requisitos, o modelo de banco de dados e o diagrama de classes, pode ser encontrada na pasta Requesitos-e-Modelos.
 
 ## Equipe
 
