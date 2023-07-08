@@ -19,7 +19,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 - Linguagem de Programação: TypeScript
 - Banco de Dados: SQlite
 - Frameworks e Bibliotecas/Dependencias : 
-  * Prisma.io: bit.ly/46yJcXz
+  * Prisma.io: (bit.ly/46yJcXz)
   * Aws: bit.ly/3D2AD9F
   * bcrypt: bit.ly/44yPaph
   * cors: bit.ly/3rlK4P1
