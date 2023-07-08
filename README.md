@@ -19,22 +19,22 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 - Linguagem de Programação: TypeScript
 - Banco de Dados: SQlite
 - Frameworks e Bibliotecas/Dependencias : 
-    -[Prisma.io](bit.ly/46yJcXz)
-    -[Aws](bit.ly/3D2AD9F)
-    -[bcrypt](bit.ly/44yPaph)
-    -[cors](bit.ly/3rlK4P1)
-    -[date-fns](bit.ly/3XJ5H7P)
-    -[express](bit.ly/3XHap66)
-    -[jsonwebtoken](bit.ly/44gYoXw)
-    -[multer](bit.ly/3JMEHyG)
-    -[uuid](bit.ly/3Dn4fPv)
-    -[mermaid](bit.ly/3D5Posg)
-    -[vite](bit.ly/44dpBuj)
-    -[hookform](bit.ly/44dpBuj)
-    -[axios](bit.ly/43fMNH1)
-    -[react](bit.ly/44x2hYf)
-    -[react-icons](bit.ly/3pEnz7q)
-    -[eslint](bit.ly/44AAB4F)
+    |[Prisma.io](bit.ly/46yJcXz)
+    |[Aws](bit.ly/3D2AD9F)
+    |[bcrypt](bit.ly/44yPaph)
+    |[cors](bit.ly/3rlK4P1)
+    |[date-fns](bit.ly/3XJ5H7P)
+    |[express](bit.ly/3XHap66)
+    |[jsonwebtoken](bit.ly/44gYoXw)
+    |[multer](bit.ly/3JMEHyG)
+    |[uuid](bit.ly/3Dn4fPv)
+    |[mermaid](bit.ly/3D5Posg)
+    |[vite](bit.ly/44dpBuj)
+    |[hookform](bit.ly/44dpBuj)
+    |[axios](bit.ly/43fMNH1)
+    |[react](bit.ly/44x2hYf)
+    |[react-icons](bit.ly/3pEnz7q)
+    |[eslint](bit.ly/44AAB4F)
 
 
 ## Documentação
