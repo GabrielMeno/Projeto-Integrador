@@ -1,6 +1,6 @@
 import { ICreate } from '../interfaces/SchedulesInterface';
 import { getHours, isBefore, startOfHour } from 'date-fns';
-import { SchedulesRepository } from '../repository/ServicesRepository';
+import { SchedulesRepository } from '../repositories/ServicesRepository';
 class SchedulesService {
   private schedulesRepository: SchedulesRepository;
   constructor() {

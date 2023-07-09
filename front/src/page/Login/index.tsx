@@ -5,15 +5,17 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsKey } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
+import { api } from "../../server";
 interface IFormValues {
   email: string;
   password: string;
 }
 
 export function Login() {
+  const navigate = useNavigate();
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -28,8 +30,14 @@ export function Login() {
   } = useForm<IFormValues>({
     resolver: yupResolver(schema),
   });
-  const submit = handleSubmit((data) => {
-    console.log(data);
+  const submit = handleSubmit(async({ email, password }) => {
+    const result = await api.post("/users/auth", {
+      email,
+      password
+    });
+    navigate('/dashboard')
+    console.log("🚀 ~ file: index.tsx:37 ~ submit ~ result:", result)
+    
   });
   return (
     <div className={style.background}>
@@ -53,7 +61,7 @@ export function Login() {
                 type="password"
                 {...register("password", { required: true })}
                 error={errors.password && errors.password.message}
-                icon={< BsKey  size={20} />}
+                icon={<BsKey size={20} />}
               />
               <Button text="Entrar" />
             </form>

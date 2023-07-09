@@ -1,6 +1,6 @@
 import { compare, hash } from 'bcrypt';
 import { ICreate, IUpdate } from '../interfaces/UsersInterface';
-import { UsersRepository } from '../repository/UsersRepository';
+import { UsersRepository } from '../repositories/UsersRepository';
 
 import { v4 as uuid } from 'uuid';
 import { s3 } from '../config/aws';

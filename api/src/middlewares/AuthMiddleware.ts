@@ -19,7 +19,7 @@ class AuthMiddleware {
       throw new Error('There is no token key');
     }
     try {
-      const { sub } = verify(token, secretKey) as IPayload;
+      const { sub } = verify(token, secretKey ) as IPayload;
 
       request.user_id = sub;
       return next();

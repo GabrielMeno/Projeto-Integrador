@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { UsersController } from "../controllers/UsersControllers";
+import { UsersController } from "../controllers/UsersController";
 import { upload } from "../config/multer";
 import { AuthMiddleware } from "../middlewares/AuthMiddleware";
 class UsersRoutes {
