@@ -9,12 +9,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { BsKey } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { api } from "../../server";
+import { useAuth } from "../../hooks/auth";
 interface IFormValues {
   email: string;
   password: string;
 }
 
 export function Login() {
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const schema = yup.object().shape({
     email: yup
@@ -30,14 +32,15 @@ export function Login() {
   } = useForm<IFormValues>({
     resolver: yupResolver(schema),
   });
-  const submit = handleSubmit(async({ email, password }) => {
-    const result = await api.post("/users/auth", {
-      email,
-      password
-    });
-    navigate('/dashboard')
-    console.log("🚀 ~ file: index.tsx:37 ~ submit ~ result:", result)
+  const submit = handleSubmit(async ({ email, password }) => {
     
+    try {
+      signIn({ email, password });
+      navigate("/dashboard");
+    } catch (error) {
+      console.log("🚀 ~ file: index.tsx:41 ~ submit ~ error:", error)
+      
+    }
   });
   return (
     <div className={style.background}>
