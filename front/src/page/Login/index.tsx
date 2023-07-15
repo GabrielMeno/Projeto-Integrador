@@ -36,7 +36,7 @@ export function Login() {
     
     try {
       signIn({ email, password });
-      navigate("/dashboard");
+      
     } catch (error) {
       console.log("🚀 ~ file: index.tsx:41 ~ submit ~ error:", error)
       

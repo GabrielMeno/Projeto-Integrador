@@ -53,7 +53,7 @@ class UsersServices {
       const uploadImage = avatar_url?.buffer;
       const uploadS3 = await s3
         .upload({
-          Bucket: 'semana-heroi',
+          Bucket: 'projeto-integrador',
           Key: `${uuid()}-${avatar_url?.originalname}`,
           // ACL: 'public-read',
           Body: uploadImage,
@@ -89,7 +89,7 @@ class UsersServices {
 
     const token = sign({ email }, secretKey, {
       subject: findUser.id,
-      expiresIn: '60s',
+      expiresIn: '400s',
     });
     const refreshToken = sign({ email }, secretKeyRefreshToken, {
       subject: findUser.id,

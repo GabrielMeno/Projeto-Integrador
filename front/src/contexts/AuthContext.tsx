@@ -2,6 +2,7 @@ import { ReactNode, createContext, useState } from "react";
 import { api } from "../server";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 interface IAuthProvider {
   children: ReactNode;
@@ -18,13 +19,15 @@ interface ISingIn {
 export const AuthContext = createContext({} as IAuthContextData);
 
 export function AuthProvider({ children }: IAuthProvider) {
+
+  const navigate = useNavigate();
   async function signIn({ email, password }: ISingIn) {
     try {
       const { data } = await api.post("/users/auth", {
         email,
         password,
       });
-      console.log("🚀 ~ file: AuthContext.tsx:27 ~ signIn ~ data:", data)
+      console.log("🚀 ~ file: AuthContext.tsx:27 ~ signIn ~ data:", data);
       const { token, refresh_token, user } = data;
       const userData = {
         name: user.name,
@@ -37,13 +40,18 @@ export function AuthProvider({ children }: IAuthProvider) {
         "user: projeto-integrador",
         JSON.stringify(userData)
       );
+
+      navigate("/dashboard"); 
+      toast.success(`Seja bem vindo ${userData.name}`)
       return data;
     } catch (error) {
       console.log("🚀 ~ file: AuthContext.tsx:16 ~ signIn ~ error:", error);
-      if(isAxiosError(error)){
+      if (isAxiosError(error)) {
         toast.error(error.response?.data.message);
       } else {
-        toast.error("Não foi possível fazer o login. Tente novamente mais tarde.");
+        toast.error(
+          "Não foi possível fazer o login. Tente novamente mais tarde."
+        );
       }
     }
   }
