@@ -9,6 +9,14 @@ interface IAuthProvider {
 }
 interface IAuthContextData {
   signIn: ({ email, password }: ISingIn) => void;
+  signOut: () => void;
+  user: IUserData
+}
+
+interface IUserData {
+  name: string;
+  email: string;
+  avatar_url: string;
 }
 
 interface ISingIn {
@@ -19,6 +27,13 @@ interface ISingIn {
 export const AuthContext = createContext({} as IAuthContextData);
 
 export function AuthProvider({ children }: IAuthProvider) {
+  const [user, setUser] = useState(() => {
+    const user = localStorage.getItem("user: projeto-integrador");
+    if (user) {
+      return JSON.parse(user);
+    }
+    return {};
+  });
 
   const navigate = useNavigate();
   async function signIn({ email, password }: ISingIn) {
@@ -40,9 +55,11 @@ export function AuthProvider({ children }: IAuthProvider) {
         "user: projeto-integrador",
         JSON.stringify(userData)
       );
+      const 
+
 
       navigate("/dashboard"); 
-      toast.success(`Seja bem vindo ${userData.name}`)
+      toast.success(`Seja bem vindo(a) ${userData.name}`)
       return data;
     } catch (error) {
       console.log("🚀 ~ file: AuthContext.tsx:16 ~ signIn ~ error:", error);
@@ -56,7 +73,14 @@ export function AuthProvider({ children }: IAuthProvider) {
     }
   }
 
+  function signOut() {
+    localStorage.removeItem("token: projeto-integrador");
+    localStorage.removeItem("refresh_token: projeto-integrador");
+    localStorage.removeItem("user: projeto-integrador");
+    navigate('/');
+  }
+
   return (
-    <AuthContext.Provider value={{ signIn }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signIn, signOut }}>{children}</AuthContext.Provider>
   );
 }
