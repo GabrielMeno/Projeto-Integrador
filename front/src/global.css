@@ -28,3 +28,7 @@
   padding-right: 1rem;
   width:100%;
 }
+
+body{
+  background-color: var(--gray-50);
+}

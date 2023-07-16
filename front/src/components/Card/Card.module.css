@@ -1,0 +1,31 @@
+.background{
+  display: flex;
+  background-color: var(--white);
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.background>div{
+  display: flex;
+  align-items: center;
+}
+.background>div>p{
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.background>div>span{
+  background-color: var(--secundary);
+  color: var(--white);
+  border-radius: 8px 0 0 8px;
+  padding: .8rem;
+  margin-right: 1rem;
+}
+
+.icons{
+  margin-right: .5rem;
+}
+.icons svg{
+  margin-right: .5rem;
+}

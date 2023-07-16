@@ -55,11 +55,10 @@ export function AuthProvider({ children }: IAuthProvider) {
         "user: projeto-integrador",
         JSON.stringify(userData)
       );
-      const 
-
-
+ 
       navigate("/dashboard"); 
-      toast.success(`Seja bem vindo(a) ${userData.name}`)
+      toast.success(`Seja bem vindo(a) ${userData.name}`) 
+      setUser(userData);
       return data;
     } catch (error) {
       console.log("🚀 ~ file: AuthContext.tsx:16 ~ signIn ~ error:", error);
@@ -81,6 +80,6 @@ export function AuthProvider({ children }: IAuthProvider) {
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signIn, signOut, user }}>{children}</AuthContext.Provider>
   );
 }
