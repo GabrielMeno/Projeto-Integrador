@@ -17,6 +17,7 @@
   font-size: 1.2rem;
 }
 
+
 .background>div>span{
   background-color: var(--secondary);
   color: var(--white);
@@ -24,6 +25,12 @@
   padding: .8rem;
   margin-right: 1rem;
 }
+
+
+.disabled{
+  background-color: var(--gray-300) !important;
+}
+
 
 .icons{
   margin-right: .5rem;
