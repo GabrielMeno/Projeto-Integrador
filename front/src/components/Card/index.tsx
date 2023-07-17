@@ -1,6 +1,7 @@
 import style from "./Card.module.css";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { GrEdit } from "react-icons/gr";
+
+import { AiOutlineEdit } from "react-icons/ai";
 export const Card = () => {
   return (
     <div  className={style.background}>
@@ -10,8 +11,8 @@ export const Card = () => {
         <p>Gabriel Menoncin</p>
       </div>
       <div className={style.icons}>
-        <RiDeleteBinLine color="#5F68B1/>
-        <GrEdit />
+        <AiOutlineEdit color="#5F68B1" size={17}/>
+        <RiDeleteBinLine  color= "#EB2E2E" size={17}/>  
       </div>
     </div>
   )
