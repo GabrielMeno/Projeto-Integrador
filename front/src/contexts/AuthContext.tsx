@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { api } from "../server";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
@@ -10,7 +10,18 @@ interface IAuthProvider {
 interface IAuthContextData {
   signIn: ({ email, password }: ISingIn) => void;
   signOut: () => void;
-  user: IUserData
+  user: IUserData;
+  availableSchedules : Array<string>;
+  schedules: Array<IShedule>;
+  date: string;
+  handleSetDate: (date: string) => void;
+}
+
+interface IShedule {
+  name: string;
+  date: Date;
+  phone: string;
+  id: string;
 }
 
 interface IUserData {
@@ -27,6 +38,22 @@ interface ISingIn {
 export const AuthContext = createContext({} as IAuthContextData);
 
 export function AuthProvider({ children }: IAuthProvider) {
+  const [schedules, setSchedules] = useState<Array<IShedule>>([]);
+  const [date, setDate] = useState('');
+  const availableSchedules = [
+    '09',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+
+  ]
   const [user, setUser] = useState(() => {
     const user = localStorage.getItem("user: projeto-integrador");
     if (user) {
@@ -36,6 +63,31 @@ export function AuthProvider({ children }: IAuthProvider) {
   });
 
   const navigate = useNavigate();
+
+  const handleSetDate = (date: string) => {
+    setDate(date);
+  }
+
+  useEffect(() => {
+    api
+      .get("/schedules", {
+        params: {
+          date,
+        },
+      })
+      .then((response) => {
+        console.log(
+          "🚀 useEffect",
+          response
+        );
+        setSchedules(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [date]);
+
+
+
+
   async function signIn({ email, password }: ISingIn) {
     try {
       const { data } = await api.post("/users/auth", {
@@ -55,9 +107,9 @@ export function AuthProvider({ children }: IAuthProvider) {
         "user: projeto-integrador",
         JSON.stringify(userData)
       );
- 
-      navigate("/dashboard"); 
-      toast.success(`Seja bem vindo(a) ${userData.name}`) 
+
+      navigate("/dashboard");
+      toast.success(`Seja bem vindo(a) ${userData.name}`);
       setUser(userData);
       return data;
     } catch (error) {
@@ -76,10 +128,12 @@ export function AuthProvider({ children }: IAuthProvider) {
     localStorage.removeItem("token: projeto-integrador");
     localStorage.removeItem("refresh_token: projeto-integrador");
     localStorage.removeItem("user: projeto-integrador");
-    navigate('/');
+    navigate("/");
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signIn, signOut, user, availableSchedules, schedules , date, handleSetDate}}>
+      {children}
+    </AuthContext.Provider>
   );
 }

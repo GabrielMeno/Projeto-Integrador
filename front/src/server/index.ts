@@ -16,6 +16,7 @@ const refreshSubscribers: Array<(token: string) => void >= [];
 
 let failedRequest: Array <IRequestConfig> = [];
 
+let isRefreshing = false;
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token: projeto-integrador");
@@ -37,33 +38,38 @@ api.interceptors.response.use(
         error.response?.data && 
         error.response?.data.code === 'token.expired'
       ) {
-
-        try {
-          const refresh = localStorage.getItem(
-            'refresh_token: projeto-integrador',
-            );
-          const response = await api.post('/refresh', {
-            refresh_token: refresh
-          });
-  
-          const { token, refresh_token } = response.data;
-          localStorage.setItem('token: projeto-integrador', token);
-          localStorage.setItem('refresh_token: projeto-integrador', refresh_token);
-  
-          onRefreshed(token);
-  
-  
-          if(originalRequest?.headers){
-            originalRequest.headers.Authorization = `Bearer ${token}`;
+        if(!isRefreshing) {
+          try {
+            const refresh = localStorage.getItem(
+              'refresh_token: projeto-integrador',
+              );
+            const response = await api.post('/users/refresh', {
+              refresh_token: refresh
+            });
+            const { token, refresh_token } = response.data;
+            localStorage.setItem('token: projeto-integrador', token);
+            localStorage.setItem('refresh_token: projeto-integrador', refresh_token);
+            isRefreshing = false;
+            onRefreshed(token);
+            if(originalRequest?.headers){
+              originalRequest.headers.Authorization = `Bearer ${token}`;
+            }
+            return axios(originalRequest);
+          } catch (error) {
+            failedRequest.forEach((request) =>  {
+              request.onFailure?.(error as AxiosError)
+            });
+            failedRequest = []; 
           }
-          return axios(originalRequest);
-        } catch (error) {
-          failedRequest.forEach((request) =>  {
-            request.onFailure?.(error as AxiosError)
-          });
-          failedRequest = []; 
         }
       }
+      return new Promise((resolve, reject)=>{
+        failedRequest.push({
+          ...originalRequest,
+          onSuccess: (response) => resolve(response),
+          onFailure: (error) => reject(error),
+        });
+      })
     }else{
       localStorage.remodeItem('token: projeto-integrador');
       localStorage.remodeItem('refesh_token: projeto-integrador');

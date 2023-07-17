@@ -44,10 +44,6 @@ export function Dashboard() {
         },
       })
       .then((response) => {
-        console.log(
-          "🚀 ~ file: index.tsx:36 ~ useEffect ~ response:",
-          response
-        );
         setSchedules(response.data);
       })
       .catch((error) => console.log(error));
