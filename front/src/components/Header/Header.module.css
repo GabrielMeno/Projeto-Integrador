@@ -23,6 +23,11 @@
 
 }
 
+.dropdownMenu a{
+  color: var(--white);
+  text-decoration: none;
+}
+
 .dropdown{
   position: relative;
   display: flex;

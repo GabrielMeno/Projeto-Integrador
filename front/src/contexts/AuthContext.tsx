@@ -11,10 +11,11 @@ interface IAuthContextData {
   signIn: ({ email, password }: ISingIn) => void;
   signOut: () => void;
   user: IUserData;
-  availableSchedules : Array<string>;
+  availableSchedules: Array<string>;
   schedules: Array<IShedule>;
   date: string;
   handleSetDate: (date: string) => void;
+  isAuthenticated: boolean;   
 }
 
 interface IShedule {
@@ -39,21 +40,20 @@ export const AuthContext = createContext({} as IAuthContextData);
 
 export function AuthProvider({ children }: IAuthProvider) {
   const [schedules, setSchedules] = useState<Array<IShedule>>([]);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState("");
   const availableSchedules = [
-    '09',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    '19',
-
-  ]
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+  ];
   const [user, setUser] = useState(() => {
     const user = localStorage.getItem("user: projeto-integrador");
     if (user) {
@@ -62,11 +62,16 @@ export function AuthProvider({ children }: IAuthProvider) {
     return {};
   });
 
+  const isAuthenticated = !!user && Object.keys(user).length !== 0;
+
+
+
+
   const navigate = useNavigate();
 
   const handleSetDate = (date: string) => {
     setDate(date);
-  }
+  };
 
   useEffect(() => {
     api
@@ -76,17 +81,11 @@ export function AuthProvider({ children }: IAuthProvider) {
         },
       })
       .then((response) => {
-        console.log(
-          "🚀 useEffect",
-          response
-        );
+        console.log("🚀 useEffect", response);
         setSchedules(response.data);
       })
       .catch((error) => console.log(error));
   }, [date]);
-
-
-
 
   async function signIn({ email, password }: ISingIn) {
     try {
@@ -132,7 +131,18 @@ export function AuthProvider({ children }: IAuthProvider) {
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user, availableSchedules, schedules , date, handleSetDate}}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        user,
+        availableSchedules,
+        schedules,
+        date,
+        handleSetDate,
+        isAuthenticated,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
