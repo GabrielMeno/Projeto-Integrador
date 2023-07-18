@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import { useAuth } from "../../hooks/auth";
 import style from "./ModalEdit.module.css";
 import { AiOutlineClose } from "react-icons/ai";

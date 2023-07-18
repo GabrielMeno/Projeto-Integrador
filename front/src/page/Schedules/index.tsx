@@ -111,7 +111,7 @@ export function Schedules() {
 
           <div className={style.footer}>
             <button>Cancelar</button>
-            <button>Editar</button>
+            <button>Cadastrar</button>
           </div>
         </form>
       </div>

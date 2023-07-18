@@ -8,7 +8,6 @@ import { Button } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { BsKey } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-import { api } from "../../server";
 import { useAuth } from "../../hooks/auth";
 interface IFormValues {
   email: string;
